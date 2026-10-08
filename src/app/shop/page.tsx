@@ -8,6 +8,7 @@ import { ProductGrid } from "@/components/collection/product-grid";
 import { ShopifyFilters } from "@/components/collection/shopify-filters";
 import { placeholderImages } from "@/lib/constants/placeholder-images";
 import { getProducts } from "@/lib/shopify/products";
+import { parseStorefrontProductFilter } from "@/lib/shopify/filters";
 import type { ProductPageOptions, StorefrontProductFilter } from "@/lib/shopify/types";
 
 export const metadata: Metadata = { title: "Shop Fine Jewellery" };
@@ -33,12 +34,8 @@ function parseFilters(value: string | string[] | undefined): StorefrontProductFi
   const values = Array.isArray(value) ? value : value ? [value] : [];
   return values.slice(0, 12).flatMap((input) => {
     if (input.length > 2048) return [];
-    try {
-      const parsed: unknown = JSON.parse(input);
-      return parsed && typeof parsed === "object" && !Array.isArray(parsed) ? [parsed as StorefrontProductFilter] : [];
-    } catch {
-      return [];
-    }
+    const parsed = parseStorefrontProductFilter(input);
+    return parsed ? [input] : [];
   });
 }
 

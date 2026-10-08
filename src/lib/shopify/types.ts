@@ -100,6 +100,8 @@ export interface ProductFilterValue {
 
 export type StorefrontProductFilter = string;
 
+export type ShopifyProductFilter = Record<string, unknown>;
+
 export interface CartLine {
   id: string;
   quantity: number;

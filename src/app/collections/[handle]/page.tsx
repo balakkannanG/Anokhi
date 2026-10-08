@@ -10,6 +10,7 @@ import { SectionHeading } from "@/components/ui/section-heading";
 import { placeholderImages } from "@/lib/constants/placeholder-images";
 import { jewelleryCategories, ringCategories } from "@/lib/constants/navigation";
 import { getCollectionByHandle } from "@/lib/shopify/collections";
+import { parseStorefrontProductFilter } from "@/lib/shopify/filters";
 import type { StorefrontProductFilter } from "@/lib/shopify/types";
 
 const taxonomyTitles = new Map<string, string>([
@@ -23,12 +24,8 @@ function parseFilterInputs(value: string | string[] | undefined): StorefrontProd
   const entries = Array.isArray(value) ? value : value ? [value] : [];
   return entries.slice(0, 12).flatMap((entry) => {
     if (entry.length > 2048) return [];
-    try {
-      const parsed: unknown = JSON.parse(entry);
-      return parsed && typeof parsed === "object" && !Array.isArray(parsed) ? [parsed as StorefrontProductFilter] : [];
-    } catch {
-      return [];
-    }
+    const parsed = parseStorefrontProductFilter(entry);
+    return parsed ? [entry] : [];
   });
 }
 

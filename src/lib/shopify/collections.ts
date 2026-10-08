@@ -1,11 +1,12 @@
 import { storefrontFetch, unavailable } from "@/lib/shopify/client";
+import { parseStorefrontProductFilter } from "@/lib/shopify/filters";
 import { GET_COLLECTION_BY_HANDLE, GET_COLLECTIONS } from "@/lib/shopify/queries";
 import type {
   Collection,
   CollectionSortKey,
+  ShopifyProductFilter,
   ProductFilterGroup,
   ProductSummary,
-  ShopifyImage,
   ShopifyResult,
 } from "@/lib/shopify/types";
 
@@ -74,10 +75,10 @@ export async function getCollectionByHandle(
     sortKey: validCollectionSortKeys[options.sort ?? "collection-default"] ?? "COLLECTION_DEFAULT",
     reverse: options.reverse ?? options.sort === "price-high",
   };
-  const fetchCollection = (filters: string[]) =>
+  const fetchCollection = (filters: ShopifyProductFilter[]) =>
     storefrontFetch<{ collection: StorefrontCollection | null }, Record<string, unknown>>(
       GET_COLLECTION_BY_HANDLE,
-      { ...request, filters: filters.map((input) => JSON.parse(input)) },
+      { ...request, filters },
       { revalidate: 180, tags: [`collection-${cleanHandle}`] },
     );
 
@@ -91,7 +92,10 @@ export async function getCollectionByHandle(
   );
   const accepted = requestedInputs.filter((input) =>
     typeof input === "string" && input.length <= 2048 && allowedInputs.has(input),
-  );
+  ).flatMap((input) => {
+    const parsed = parseStorefrontProductFilter(input);
+    return parsed ? [parsed] : [];
+  });
 
   let collection = initial.data.collection;
   if (accepted.length) {

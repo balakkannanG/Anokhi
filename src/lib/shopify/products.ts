@@ -3,14 +3,15 @@ import { GET_PRODUCT_BY_HANDLE, GET_PRODUCTS, SEARCH_PRODUCTS } from "@/lib/shop
 import type {
   Product,
   ProductMedia,
+  ShopifyProductFilter,
   ProductPageOptions,
   ProductSortKey,
   ProductSummary,
   ProductFilterGroup,
   ShopifyImage,
   ShopifyResult,
-  StorefrontProductFilter,
 } from "@/lib/shopify/types";
+import { parseStorefrontProductFilter } from "@/lib/shopify/filters";
 
 interface Connection<T> { nodes: T[] }
 interface StorefrontProduct extends Omit<Product, "images" | "variants" | "media"> {
@@ -88,7 +89,7 @@ export async function getProducts(
     sortKey: sortKey(options.sortKey),
     reverse: options.reverse ?? false,
   };
-  const fetchProducts = (filters: StorefrontProductFilter[]) =>
+  const fetchProducts = (filters: ShopifyProductFilter[]) =>
     storefrontFetch<ProductPageData, Record<string, unknown>>(
       GET_PRODUCTS,
       { ...variables, filters },
@@ -102,14 +103,10 @@ export async function getProducts(
   const allowedInputs = new Set(
     (initial.data.products.filters ?? []).flatMap((group) => group.values.map((value) => value.input)),
   );
-  const accepted: StorefrontProductFilter[] = requestedInputs.flatMap((input) => {
+  const accepted: ShopifyProductFilter[] = requestedInputs.flatMap((input) => {
     if (typeof input !== "string" || input.length > 2048 || !allowedInputs.has(input)) return [];
-    try {
-      const parsed: unknown = JSON.parse(input);
-      return parsed && typeof parsed === "object" && !Array.isArray(parsed) ? [parsed as StorefrontProductFilter] : [];
-    } catch {
-      return [];
-    }
+    const parsed = parseStorefrontProductFilter(input);
+    return parsed ? [parsed] : [];
   });
 
   let data = initial.data;

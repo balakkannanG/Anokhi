@@ -66,7 +66,9 @@ export default async function RingsPage() {
         <div className="mx-auto max-w-[1320px]">
           <SectionHeading dark description="A considered edit of ring forms and details." href="#all-rings" linkLabel="VIEW ALL" title="The Anokhi signature" />
           <div className="mt-8">
-            {result.state === "ready" ? <ProductGrid products={result.data.products.nodes} /> : <ShopifyState result={result} emptyAction={{ label: "SHOP ALL", href: "/shop" }} />}
+            {result.state === "ready"
+              ? <ProductGrid products={"nodes" in result.data.products ? result.data.products.nodes : result.data.products} />
+              : <ShopifyState result={result} emptyAction={{ label: "SHOP ALL", href: "/shop" }} />}
           </div>
         </div>
       </section>
