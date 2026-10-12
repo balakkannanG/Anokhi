@@ -104,7 +104,7 @@ export function HomeHero() {
             ) : null}
             <Image
               alt={slide.image.alt}
-              className="object-cover object-[90%_center] md:object-center "
+              className={`object-cover ${index === 0 ? "object-[78%_center]" : index === 1 ? "object-[80%_center]" : "object-[90%_center]"} md:object-center`}
               fill
               priority={index === 0}
               sizes="100vw"
