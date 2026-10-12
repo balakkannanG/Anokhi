@@ -5,13 +5,14 @@ import Link from "next/link";
 import { motion, useReducedMotion } from "motion/react";
 import { placeholderImages } from "@/lib/constants/placeholder-images";
 
+
 const collections = [
   {
     name: "Timeless",
     eyebrow: "The forever edit",
     description: "Enduring jewellery silhouettes, thoughtfully chosen to become part of your story.",
     href: "/collections?collection=timeless",
-    image: placeholderImages.model,
+    image: { src: "/homepage/collections/timeless.png", alt: "A selection of timeless jewellery pieces, including rings, earrings, and necklaces." },
     products: [
       { name: "Aurelia Sculpted Hoops", type: "Gold earrings", price: "₹32,450", description: "A softly sculpted silhouette with an enduring golden glow.", image: placeholderImages.earrings },
       { name: "The Lotus Keepsake", type: "Pendant necklace", price: "₹28,900", description: "A delicate floral motif, made to stay close to the heart.", image: placeholderImages.pendant },
@@ -30,7 +31,8 @@ const collections = [
     eyebrow: "Signature, by Anokhi",
     description: "A considered mix of fine jewellery, shaped by craft, character, and quiet confidence.",
     href: "/collections?collection=anokhi-collection",
-    image: placeholderImages.bridalSet,
+      image: { src: "/homepage/collections/anokhi collection.png", alt: "A selection of timeless jewellery pieces, including rings, earrings, and necklaces." },
+
     products: [
       { name: "Aurelia Gold Hoops", type: "Earrings", price: "₹32,450", description: "Sculpted gold hoops with a softly radiant finish.", image: placeholderImages.earrings },
       { name: "Anokhi Signature Solitaire", type: "Diamond ring", price: "₹68,084", description: "A signature diamond silhouette with a timeless, polished band.", image: placeholderImages.engagementRing },
@@ -49,7 +51,8 @@ const collections = [
     eyebrow: "Made more you",
     description: "Explore distinctive jewellery forms and thoughtful details that make a piece feel personal.",
     href: "/collections?collection=personalizing",
-    image: placeholderImages.jewellerySet,
+     image: { src: "/homepage/collections/personalizing.png", alt: "A selection of personalised jewellery pieces, including rings, earrings, and necklaces." },
+
     products: [
       { name: "The Signature Pendant", type: "Personalised necklace", price: "From ₹28,000", description: "A delicate focal piece with a style that feels distinctly yours.", image: placeholderImages.pendant },
       { name: "Petite Halo Studs", type: "Diamond earrings", price: "From ₹32,500", description: "A fine halo silhouette for a subtle, individual sparkle.", image: placeholderImages.earrings },

@@ -43,7 +43,7 @@ export function SiteFooter() {
   return (
     <footer className="bg-anokhi-plum px-4 pb-6 pt-12 text-white sm:px-7 sm:pt-16 lg:px-10">
       <div className="mx-auto max-w-[1320px]">
-        <div className="grid grid-cols-1 gap-x-6 gap-y-10 md:grid-cols-[1.2fr_1fr] md:gap-9">
+        <div className="grid grid-cols-2 gap-x-6 gap-y-10 md:grid-cols-[1.2fr_1fr_1fr_1fr_1fr] md:gap-9">
           <div className="col-span-2 md:col-span-1">
             <Link className="display-face text-[25px] tracking-[0.22em]" href="/">
               ANOKHI
@@ -51,12 +51,11 @@ export function SiteFooter() {
             <p className="mt-4 max-w-[260px] text-xs leading-6 text-white">
               Considered fine jewellery for the moments, milestones and stories you want to keep.
             </p>
-            <Link className="mt-6 inline-flex min-h-10 items-center gap-3 border-b border-muted-gold pb-1 text-[10px] tracking-[0.14em]" href="/collections">
-              EXPLORE COLLECTIONS <span aria-hidden="true">↗</span>
+            <Link className="mt-6 inline-flex min-h-10 items-center gap-3 border-b border-muted-gold pb-1 text-[10px] tracking-[0.14em]" href="/jewellery">
+              EXPLORE JEWELLERY <span aria-hidden="true">↗</span>
             </Link>
           </div>
-          {/* Temporarily hide links to non-launch pages; keep their routes intact. */}
-          {false && footerGroups.map((group) => (
+          {footerGroups.map((group) => (
             <div key={group.title}>
               <h2 className="text-[10px] font-medium tracking-[0.14em] text-muted-gold">
                 {group.title.toUpperCase()}
@@ -75,11 +74,10 @@ export function SiteFooter() {
         </div>
         <div className="mt-12 flex flex-col gap-4 border-t border-ivory/20 pt-5 text-[9px] text-ivory/70 sm:flex-row sm:items-center sm:justify-between">
           <p>ANOKHI · FINE JEWELLERY</p>
-          {/* Legal pages remain available directly but are omitted from launch navigation. */}
-          {false && <nav aria-label="Legal links" className="flex flex-wrap gap-x-5 gap-y-2">
+          <nav aria-label="Legal links" className="flex flex-wrap gap-x-5 gap-y-2">
             <Link href="/privacy-policy">Privacy policy</Link>
             <Link href="/terms">Terms</Link>
-          </nav>}
+          </nav>
           <Link className="w-fit tracking-[0.12em]" href="#top">BACK TO TOP ↑</Link>
         </div>
       </div>

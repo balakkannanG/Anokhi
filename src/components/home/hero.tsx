@@ -4,40 +4,51 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { ArrowUpRight, CaretLeft, CaretRight } from "@/components/ui/icons";
-import { placeholderImages } from "@/lib/constants/placeholder-images";
 
 const heroSlides = [
   {
-    image: placeholderImages.jewellerySet,
-    eyebrow: "ANOKHI · MADE FOR YOUR MOMENTS",
-    title: "Jewellery worth remembering.",
-    description: "Thoughtfully designed pieces for the moments and stories you carry with you.",
+    image: {
+      src: "/homepage/banner/banner.jpg",
+      mobileSrc: "/homepage/banner/mbanner.jpg",
+      alt: "Anokhi homepage banner",
+    },
+    eyebrow: "INDIVIDUALLY ANOKHI",
+    title: "You are the inspiration..",
+    description: "Thoughtfully crafted diamond jewellery, shaped by what makes you unique.",
     link: "/jewellery",
-    linkLabel: "EXPLORE JEWELLERY",
+    linkLabel: " Discover Anokhi",
   },
   {
-    image: placeholderImages.model,
-    eyebrow: "SIGNATURE ANOKHI STYLE",
-    title: "Find the pieces you’ll keep.",
-    description: "Explore signature jewellery selected to feel unmistakably yours.",
+    image: { src: "/homepage/banner/banner2.jpg",mobileSrc: "/homepage/banner/mbanner2.jpg", alt: "Anokhi homepage banner" },
+    eyebrow: "YOUR STYLE · YOUR SIGNATURE",
+    title: "A little of you. In every detail.",
+    description: "A favourite shape. A meaningful stone. A design we bring to life together.",
     link: "/collections",
-    linkLabel: "DISCOVER OUR COLLECTIONS",
+    linkLabel: "Create With Us",
   },
   {
-    image: placeholderImages.earrings,
-    eyebrow: "A LITTLE LIGHT, EVERY DAY",
-    title: "Details that feel like you.",
-    description: "Explore thoughtful finishing touches, made to become part of your story.",
+    image: {
+      src: "/homepage/banner/banner3.jpg",
+      mobileSrc: "/homepage/banner/mbanner3.jpg",
+      alt: "Anokhi homepage banner",
+    },
+    eyebrow: "PERSONAL BY DESIGN",
+    title: "Only you know what it means.",
+    description: "A memory, a milestone, a message—held in a piece you can wear.",
     link: "/jewellery",
-    linkLabel: "DISCOVER JEWELLERY",
+    linkLabel: "Make It Yours",
   },
   {
-    image: placeholderImages.bridalSet,
-    eyebrow: "CRAFTED FOR WHAT MATTERS",
-    title: "Make it unmistakably yours.",
-    description: "Begin with a ring style and explore the details you would like to make your own.",
+    image: {
+      src: "/homepage/banner/banner4.jpg",
+      mobileSrc: "/homepage/banner/mbanner4.jpg",
+      alt: "Anokhi homepage banner",
+    },
+    eyebrow: "CRAFTED AROUND YOU",
+    title: "Your story belongs in the design.",
+    description: "From a meaningful engraving to a bespoke creation, let every detail hold something of you.",
     link: "/customise-your-ring",
-    linkLabel: "EXPLORE CUSTOM RINGS",
+    linkLabel: "Make It Truly Yours",
   },
 ];
 
@@ -87,17 +98,22 @@ export function HomeHero() {
           className={`absolute inset-0 transition-opacity duration-700 motion-reduce:transition-none ${index === activeIndex ? "opacity-100" : "pointer-events-none opacity-0"}`}
           key={slide.image.src}
         >
-          <Image
-            alt={slide.image.alt}
-            className="object-cover object-center"
-            fill
-            priority={index === 0}
-            sizes="100vw"
-            src={slide.image.src}
-          />
+          <picture className="absolute inset-0">
+            {slide.image.mobileSrc ? (
+              <source media="(max-width: 767px)" srcSet={slide.image.mobileSrc} />
+            ) : null}
+            <Image
+              alt={slide.image.alt}
+              className="object-cover object-[80%_center] md:object-center "
+              fill
+              priority={index === 0}
+              sizes="100vw"
+              src={slide.image.src}
+            />
+          </picture>
         </div>
       ))}
-      <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/30 to-black/5" />
+      <div aria-hidden="true" className="absolute inset-0 bg-black/40" />
 
       <div
         aria-live="polite"
@@ -115,7 +131,8 @@ export function HomeHero() {
           </p>
           <div className="mt-7 flex flex-col items-start gap-5 sm:flex-row sm:items-center sm:gap-7">
             <Link
-              className="group inline-flex min-h-12 items-center gap-5 bg-anokhi-plum px-5 py-2 text-[10px] font-semibold tracking-[0.14em] text-white transition-transform duration-200 hover:-translate-y-0.5 active:translate-y-0"
+              className="group inline-flex min-h-12 uppercase
+ items-center gap-5 bg-anokhi-plum px-5 py-2 text-[10px] font-semibold tracking-[0.14em] text-white transition-transform duration-200 hover:-translate-y-0.5 active:translate-y-0"
               href={heroSlides[activeIndex].link}
             >
               {heroSlides[activeIndex].linkLabel}

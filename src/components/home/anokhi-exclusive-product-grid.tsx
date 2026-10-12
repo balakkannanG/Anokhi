@@ -24,7 +24,7 @@ export function AnokhiExclusiveHeading() {
           Anokhi Exclusive
         </h2>
         <p className="mt-3 max-w-xl text-sm leading-6 text-coffee">
-          Six signature jewellery styles, chosen for the moments worth keeping.
+          Six signature styles, exquisitely expressed in diamonds. Discover your own expression of elegance.
         </p>
       </div>
       <Link

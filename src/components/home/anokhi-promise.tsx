@@ -81,7 +81,8 @@ export function AnokhiPromise() {
           viewport={{ once: false, amount: 0.4 }}
           whileInView={{ opacity: 1, x: 0 }}
         >
-          <p className="eyebrow">The details that matter</p>
+          <p className="eyebrow">CRAFTED FOR YOU, BY YOU
+</p>
           <h2
             className="display-face mt-3 text-[clamp(2rem,4vw,3.25rem)] leading-tight text-charcoal"
             id="anokhi-promise-heading"
@@ -89,7 +90,7 @@ export function AnokhiPromise() {
             The Anokhi promise
           </h2>
           <p className="mt-3 text-sm leading-6 text-coffee">
-            A little more clarity and care, from choosing your ring to its arrival.
+            To honour what makes you one of a kind, in every piece we create together.
           </p>
         </motion.header>
 

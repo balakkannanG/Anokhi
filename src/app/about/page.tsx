@@ -4,6 +4,7 @@ import { Breadcrumbs } from "@/components/common/breadcrumbs";
 import { OurStorySection } from "@/components/about/our-story-section";
 import { MeetTheFounderSection } from "@/components/about/meet-the-founder-section";
 import { VisionMissionSection } from "@/components/about/vision-mission-section";
+import { AnokhiCodeSection } from "@/components/about/anokhi-code-section";
 import { CustomizationBookingDialog } from "@/components/about/customization-booking-dialog";
 import { Reveal } from "@/components/ui/reveal";
 import { placeholderImages } from "@/lib/constants/placeholder-images";
@@ -27,6 +28,7 @@ export default function AboutPage() {
       </header>
       <OurStorySection />
       <VisionMissionSection />
+      <AnokhiCodeSection />
       <MeetTheFounderSection />
       <CustomizationBookingDialog />
       {/* <section className="bg-cream px-4 py-12 sm:px-7 md:py-20 lg:px-10">

@@ -61,7 +61,11 @@ function MobileMenu() {
     : { type: "spring" as const, stiffness: 320, damping: 32 };
 
   const mobileLinks = [
-    ...menuLinks.filter((item) => item.label === "Collections"),
+    ...menuLinks.slice(0, 6),
+    { label: "Wedding", href: "/collections/wedding-rings" },
+    { label: "Contact", href: "/contact" },
+    { label: "FAQ", href: "/faq" },
+    { label: "Account", href: "/account" },
   ];
 
   return (
@@ -148,8 +152,7 @@ function MobileMenu() {
             ))}
           </AnimatePresence>
         </nav>
-        {/* Temporarily keep category shortcuts out of navigation; their routes remain available. */}
-        {false && <div className="mt-7 grid grid-cols-2 gap-6 text-[11px] text-coffee">
+        <div className="mt-7 grid grid-cols-2 gap-6 text-[11px] text-coffee">
           <div>
             <p className="eyebrow mb-3">Jewellery</p>
             <ul className="space-y-3">
@@ -174,7 +177,7 @@ function MobileMenu() {
               ))}
             </ul>
           </div>
-        </div>}
+        </div>
       </SheetContent>
     </Sheet>
   );
@@ -313,9 +316,8 @@ export function SiteHeader() {
           <Logo />
         </div>
         <nav aria-label="Main navigation" className="hidden flex-1 items-center justify-center gap-5 xl:flex 2xl:gap-7">
-          {/* Temporarily hide non-collection navigation for launch. */}
-          {false && <ShopMegaMenu />}
-          {menuLinks.filter((item) => item.label === "Collections").map((item) => (
+          <ShopMegaMenu />
+          {menuLinks.slice(1).map((item) => (
             item.label === "Collections"
               ? <CollectionsMegaMenu key={item.href} />
               : (
@@ -330,8 +332,7 @@ export function SiteHeader() {
               )
           ))}
         </nav>
-        {/* Search, account and cart remain available by URL but are hidden from launch navigation. */}
-        {false && <nav aria-label="Store links" className="flex flex-1 items-center justify-end gap-3 sm:gap-4 lg:flex-none">
+        <nav aria-label="Store links" className="flex flex-1 items-center justify-end gap-3 sm:gap-4 lg:flex-none">
           <Link aria-label="Search products" className="grid size-10 place-items-center text-parchment hover:text-muted-gold" href="/search">
             <MagnifyingGlass aria-hidden="true" className="size-[19px]" weight="light" />
           </Link>
@@ -341,11 +342,14 @@ export function SiteHeader() {
           <Link aria-label="Shopping bag" className="grid size-10 place-items-center text-parchment hover:text-muted-gold" href="/cart">
             <Handbag aria-hidden="true" className="size-[20px]" weight="light" />
           </Link>
-        </nav>}
+        </nav>
       </div>
       <nav aria-label="Quick shop navigation" className="hidden border-t border-taupe/20 px-8 py-2 lg:block xl:hidden">
         <div className="mx-auto flex max-w-[1200px] items-center justify-center gap-8 text-[11px] text-parchment">
           <CollectionsMegaMenu />
+          <Link className="quiet-link" href="/jewellery">Jewellery</Link>
+          <Link className="quiet-link" href="/rings">Rings</Link>
+          <Link className="quiet-link" href="/customise-your-ring">Customise Your Ring</Link>
         </div>
       </nav>
     </header>

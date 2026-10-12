@@ -113,7 +113,7 @@ export function TestimonialsCarousel() {
           const loopStart = middleSlide.offsetLeft;
           const loopEnd = loopStart + loopWidth;
 
-          track.scrollLeft += (time - previousTime) * 0.024;
+          track.scrollLeft += (time - previousTime) * 0.028;
           if (track.scrollLeft >= loopEnd) track.scrollLeft -= loopWidth;
           else if (track.scrollLeft < loopStart) track.scrollLeft += loopWidth;
         }
@@ -155,12 +155,13 @@ export function TestimonialsCarousel() {
           viewport={{ once: false, amount: 0.35 }}
           whileInView={{ opacity: 1, x: 0 }}
         >
-          <p className="eyebrow">Notes on pieces to treasure</p>
+          <p className="eyebrow">BEHIND EVERY ANOKHI</p>
           <h2 className="display-face mt-3 text-[clamp(2rem,4vw,3.25rem)] leading-tight text-charcoal">
-            Stories, thoughtfully chosen.
+          Their Anokhi. In their words.
           </h2>
           <p className="mx-auto mt-3 max-w-xl text-sm leading-6 text-coffee">
-            Sample review cards and ratings shown for design preview; replace with approved customer reviews before publishing.
+     The diamond they chose. The meaning it holds. Discover the experiences behind jewellery that feels truly their own.
+
           </p>
         </motion.header>
 
@@ -200,7 +201,7 @@ export function TestimonialsCarousel() {
                 transition={
                   reduceMotion
                     ? { duration: 0 }
-                    : { duration: 0.65, delay: (index % 3) * 0.18, ease: [0.22, 1, 0.36, 1] }
+                    : { duration: 0.65, delay: (index % 3) * 0.30, ease: [0.22, 1, 0.36, 1] }
                 }
                 viewport={{ once: false, amount: 0.15 }}
                 whileInView={{ opacity: 1, y: 0 }}

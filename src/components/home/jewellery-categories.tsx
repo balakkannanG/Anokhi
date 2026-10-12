@@ -3,63 +3,72 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion, useReducedMotion } from "motion/react";
-import { placeholderImages } from "@/lib/constants/placeholder-images";
+
+const categoryImages = {
+  Rings: "/homepage/category/rings.png",
+  Earrings: "/homepage/category/earrings.png",
+  Pendants: "/homepage/category/pendants.png",
+  Bracelets: "/homepage/category/bracelets.png",
+  Necklaces: "/homepage/category/necklsaces.png",
+  "Men's Rings": "/homepage/category/men's ring.png",
+  "Men's Studs": "/homepage/category/men's studs.png",
+} as const;
 
 const categories = [
   {
     label: "Rings",
     description: "An everyday promise, made entirely your own.",
     href: "/rings",
-    image: placeholderImages.engagementRing,
+    image: { src: categoryImages.Rings, alt: "Rings category" },
     featured: true,
   },
   {
     label: "Earrings",
     description: "A little light to frame your face.",
     href: "/collections/earrings",
-    image: placeholderImages.earrings,
+    image: { src: categoryImages.Earrings, alt: "Earrings category" },
   },
   {
     label: "Pendants",
     description: "A meaningful detail, close to your heart.",
     href: "/collections/pendants",
-    image: placeholderImages.pendant,
+    image: { src: categoryImages.Pendants, alt: "Pendants category" },
   },
-  {
-    label: "Mangalsutras",
-    description: "A cherished tradition, beautifully reimagined.",
-    href: "/collections/mangalsutras",
-    image: placeholderImages.bridalSet,
-  },
+  // {
+  //   label: "Mangalsutras",
+  //   description: "A cherished tradition, beautifully reimagined.",
+  //   href: "/collections/mangalsutras",
+  //   image: { src: categoryImages.Bracelets, alt: "Mangalsutras category" },
+  // },
   {
     label: "Bracelets",
     description: "An elegant finishing touch for every day.",
     href: "/collections/bracelets",
-    image: placeholderImages.bracelet,
+    image: { src: categoryImages.Bracelets, alt: "Bracelets category" },
   },
   {
     label: "Necklaces",
     description: "A graceful statement for your own story.",
     href: "/collections/necklaces",
-    image: placeholderImages.model,
+    image: { src: categoryImages.Necklaces, alt: "Necklaces category" },
   },
   {
     label: "Men's Rings",
     description: "Distinctive design with a confident edge.",
     href: "/collections/mens-rings",
-    image: placeholderImages.coupleRings,
+    image: { src: categoryImages["Men's Rings"], alt: "Men's Rings category" },
   },
-  {
-    label: "Nosepins",
-    description: "A delicate accent with unmistakable character.",
-    href: "/collections/nosepins",
-    image: placeholderImages.engagementRing,
-  },
+  // {
+  //   label: "Nosepins",
+  //   description: "A delicate accent with unmistakable character.",
+  //   href: "/collections/nosepins",
+  //   image: { src: categoryImages.Rings, alt: "Nosepins category" },
+  // },
   {
     label: "Men's Studs",
     description: "A subtle signature, crafted to stand apart.",
     href: "/collections/mens-studs",
-    image: placeholderImages.earrings,
+    image: { src: categoryImages["Men's Studs"], alt: "Men's Studs category" },
   },
 ];
 
@@ -88,7 +97,7 @@ export function JewelleryCategories() {
               Shop by category
             </h2>
             <p className="mt-3 max-w-xl text-base leading-7 text-coffee sm:text-lg">
-              Discover the piece that feels like it was made just for you.
+              Some pieces simply feel like you. Explore diamond jewellery you see yourself in.
             </p>
           </div>
           <Link
@@ -102,7 +111,7 @@ export function JewelleryCategories() {
         <div className="grid grid-cols-2 gap-2.5 sm:gap-3 md:grid-cols-3 lg:auto-rows-[minmax(190px,18vw)] lg:grid-cols-6 lg:gap-3.5">
           {categories.map((category, index) => (
             <motion.div
-              className={category.featured ? "col-span-2 lg:row-span-2" : undefined}
+              className={category.featured ? "col-span-3 lg:row-span-2" : undefined}
               initial={reduceMotion ? false : { opacity: 0, y: 26 }}
               key={category.label}
               transition={
