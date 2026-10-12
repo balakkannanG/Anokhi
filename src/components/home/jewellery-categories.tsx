@@ -19,7 +19,11 @@ const categories = [
     label: "Rings",
     description: "An everyday promise, made entirely your own.",
     href: "/rings",
-    image: { src: categoryImages.Rings, alt: "Rings category" },
+    image: {
+      src: categoryImages.Rings,
+      mobileSrc: "/homepage/category/ringland.png",
+      alt: "Rings category",
+    },
     featured: true,
   },
   {
@@ -127,17 +131,22 @@ export function JewelleryCategories() {
                 className="group relative isolate block h-full min-h-40 overflow-hidden rounded-[10px] bg-anokhi-plum lg:min-h-0"
                 href={category.href}
               >
-                <Image
-                  alt={category.image.alt}
-                  className="object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.045] group-focus-visible:scale-[1.045]"
-                  fill
-                  sizes={
-                    category.featured
-                      ? "(max-width: 639px) 94vw, (max-width: 1023px) 64vw, 50vw"
-                      : "(max-width: 639px) 46vw, (max-width: 1023px) 31vw, 17vw"
-                  }
-                  src={category.image.src}
-                />
+                <picture className="absolute inset-0">
+                  {"mobileSrc" in category.image ? (
+                    <source media="(max-width: 767px)" srcSet={category.image.mobileSrc} />
+                  ) : null}
+                  <Image
+                    alt={category.image.alt}
+                    className="object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.045] group-focus-visible:scale-[1.045]"
+                    fill
+                    sizes={
+                      category.featured
+                        ? "(max-width: 639px) 94vw, (max-width: 1023px) 64vw, 50vw"
+                        : "(max-width: 639px) 46vw, (max-width: 1023px) 31vw, 17vw"
+                    }
+                    src={category.image.src}
+                  />
+                </picture>
                 <span
                   aria-hidden="true"
                   className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/5 to-transparent transition-colors duration-500 group-hover:bg-black/40 group-focus-visible:bg-black/40"
