@@ -13,6 +13,7 @@ const collections = [
     description: "Enduring jewellery silhouettes, thoughtfully chosen to become part of your story.",
     href: "/collections?collection=timeless",
     image: { src: "/homepage/collections/timeless.png", alt: "A selection of timeless jewellery pieces, including rings, earrings, and necklaces." },
+   
     products: [
       { name: "Aurelia Sculpted Hoops", type: "Gold earrings", price: "₹32,450", description: "A softly sculpted silhouette with an enduring golden glow.", image: placeholderImages.earrings },
       { name: "The Lotus Keepsake", type: "Pendant necklace", price: "₹28,900", description: "A delicate floral motif, made to stay close to the heart.", image: placeholderImages.pendant },
